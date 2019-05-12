@@ -3,7 +3,7 @@
  */
 
 var MULTICAST_ADDRESS = '239.255.36.36';
-var UDP_PORT = 9236
+var UDP_PORT = 8888
 
 var dgram = require("dgram");
 var uuid = require("uuid/v4");

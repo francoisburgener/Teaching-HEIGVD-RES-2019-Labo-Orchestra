@@ -1,6 +1,6 @@
 var HOST = '0.0.0.0';
 var MULTICAST_ADDRESS = '239.255.36.36';
-var UDP_PORT = 9236;
+var UDP_PORT = 8888;
 var TCP_PORT = 2205;
 
 var dgram = require("dgram");
@@ -52,11 +52,12 @@ function onClientConnected(socket){
  });
 
  upd_server.on('message',function(message,remote){
+     console.log(message.toString());
      var json = JSON.parse(message.toString());
      Musiciens.set(json.id,new Musicien(json.id,json.name,moment().format("YYYY-MM-DD HH:mm:ss")));
  })
 
- function interval(){
+ function check(){
      for(var [key,value] of Musiciens){
          var now = moment();
          var rec = moment(value.activeSince);
@@ -70,4 +71,4 @@ function onClientConnected(socket){
      }
  }
 
- setInterval(interval,1000);
+ setInterval(check,1000);
